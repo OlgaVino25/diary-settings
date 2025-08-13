@@ -1,4 +1,4 @@
-from datacenter.models import Schoolkid, Lesson, Commendation
+from datacenter.models import Lesson, Commendation
 from schoolkid_utils import get_schoolkid_by_name
 import random
 
@@ -37,11 +37,12 @@ COMMENDATION_TEXTS = [
 ]
 
 def create_commendation(schoolkid_name, subject_title):
-    """Создает похвалу для ученика по указанному предмету"""      
-    child = get_schoolkid_by_name(schoolkid_name)
+    """Создает похвалу для ученика по указанному предмету"""
+    try:      
+        child = get_schoolkid_by_name(schoolkid_name)
+        if child is None:
+            raise ValueError(f"Ученик '{schoolkid_name}' не найден")
 
-
-    try:
         lesson = Lesson.objects.filter(
             year_of_study=child.year_of_study,
             group_letter=child.group_letter,

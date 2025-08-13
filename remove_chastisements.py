@@ -1,4 +1,4 @@
-from datacenter.models import Schoolkid, Chastisement
+from datacenter.models import Chastisement
 from schoolkid_utils import get_schoolkid_by_name
 
 
@@ -13,4 +13,5 @@ def remove_chastisements(schoolkid_name):
 
 if __name__ == "__main__":
     remove_chastisements("Иван")
+
 
